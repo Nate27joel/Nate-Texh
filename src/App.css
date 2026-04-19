@@ -1,0 +1,654 @@
+/* --- Variables & Theme --- */
+*{
+  scroll-behavior: smooth;
+}
+:root {
+  --bg: #0a0a0a;
+  --text: #ffffff;
+  --muted: #888888;
+  --border: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --accent: #ffffff;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+.light {
+  --bg: #f5f5f7;
+  --text: #000000;
+  --muted: #666666;
+  --border: rgba(0, 0, 0, 0.1);
+  --card-bg: rgba(0, 0, 0, 0.02);
+  --accent: #000000;
+}
+
+/* --- Base Styles --- */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.5s ease, color 0.5s ease;
+  margin: 0;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+section {
+  padding: 8rem 10%;
+  border-top: 1px solid var(--border);
+}
+
+/* --- Navigation --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 10%;
+  z-index: 50;
+  background: rgba(var(--bg), 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.nav-links a:hover { opacity: 1; }
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.theme-toggle:hover { background: rgba(var(--text), 0.1); }
+
+/* --- Hero --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  border-top: none;
+}
+
+.hero-tag {
+  display: inline-block;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  border: 1px solid var(--border);
+  padding: 0.25rem 1rem;
+  margin-bottom: 1.25rem;
+  color: var(--muted);
+}
+
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--text);
+}
+
+.typing-container {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  color: var(--muted);
+  letter-spacing: 2px;
+  height: 2rem;
+}
+
+.cursor {
+  display: inline-block;
+  background: var(--text);
+  width: 10px;
+  height: 1.5rem;
+  margin-left: 5px;
+  animation: blink 1s infinite;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.btn {
+  padding: 1rem 2.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: 0.3s;
+  border: 1px solid var(--text);
+}
+
+.btn-primary { background: var(--text); color: var(--bg); }
+.btn-primary:hover { background: transparent; color: var(--text); }
+
+.btn-secondary { color: var(--text); }
+.btn-secondary:hover { background: var(--text); color: var(--bg); }
+
+/* --- Work Grid --- */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  margin-bottom: 5rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.work-card {
+  padding: 2.5rem;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  position: relative;
+  transition: 0.3s;
+}
+
+.work-card:hover { border-color: var(--text); }
+
+.work-id {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  opacity: 0.1;
+  margin-bottom: 1rem;
+}
+
+/* --- Skills --- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem 5rem;
+}
+
+.skill-item { margin-bottom: 2rem; }
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.skill-bar-bg {
+  height: 2px;
+  background: var(--border);
+  width: 100%;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: var(--text);
+  box-shadow: 0 0 15px var(--text);
+}
+
+/* --- AI Chat --- */
+.chat-trigger {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+  transition: 0.3s;
+}
+
+.chat-window {
+  position: fixed;
+  bottom: 6rem;
+  right: 2rem;
+  width: 90vw;
+  max-width: 380px;
+  height: 500px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 100;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.chat-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.message {
+  max-width: 85%;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.msg-ai { background: rgba(255,255,255,0.05); border: 1px solid var(--border); }
+.msg-user { background: var(--text); color: var(--bg); align-self: flex-end; margin-left: auto; }
+
+/* --- Animations --- */
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* --- Responsive --- */
+@media (min-width: 1024px) {
+  .nav-links { display: flex; }
+  .hero { flex-direction: row; text-align: left; }
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+/* ============================================================
+   DESKTOP VIEW OPTIMIZATIONS (1024px and up)
+   ============================================================ */
+
+@media (min-width: 1024px) {
+  /* 1. Global Spacing */
+  section {
+    padding: 10rem 12%; /* More breathing room on big screens */
+  }
+
+  /* 2. Hero Section - Split Layout */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Text takes more space */
+    align-items: center;
+    gap: 4rem;
+    height: 100vh;
+    padding-top: 0;
+  }
+
+  .hero h1 {
+    font-size: 7rem; /* Large impact font */
+  }
+
+  /* 3. About Section - Side by Side */
+  .about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-image-wrapper {
+    position: relative;
+    border: 1px solid var(--border);
+    padding: 1rem;
+  }
+
+  /* 4. Desktop Navigation */
+  .navbar {
+    padding: 1.5rem 10%;
+  }
+
+  .nav-links {
+    display: flex; /* Show links on desktop */
+  }
+
+  .mobile-nav-toggle {
+    display: none !important; /* Hide hamburger menu */
+  }
+
+  /* 5. Work Grid Scaling */
+  .work-grid {
+    grid-template-columns: repeat(3, 1fr); /* Force 3 columns */
+    gap: 3rem;
+  }
+
+  .work-card {
+    padding: 3.5rem; /* Increase card luxury feel */
+  }
+
+  /* 6. Skills - Wider Layout */
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem 10rem; /* Wide gutter for readability */
+  }
+
+  /* 7. Advanced Hover Effects (Only for Desktop) */
+  .work-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-10px);
+    border-color: var(--text);
+  }
+
+  .work-card:hover .work-id {
+    opacity: 0.5;
+    transform: scale(1.1);
+    transition: 0.4s ease;
+  }
+
+  .btn:hover {
+    letter-spacing: 4px; /* Text expands on hover */
+    box-shadow: 0 0 30px rgba(var(--text), 0.2);
+  }
+
+  /* 8. Fixed Side Elements (Optional high-end feel) */
+  .side-socials {
+    position: fixed;
+    left: 2rem;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 40;
+    opacity: 0.5;
+  }
+
+  .side-socials:hover { opacity: 1; }
+
+  /* 9. Contact Form Grid */
+  .contact-form {
+    grid-template-columns: 1fr 1fr; /* Name and Email side by side */
+  }
+
+  .contact-textarea, .contact-submit {
+    grid-column: span 2;
+  }
+}
+
+/* ============================================================
+   ULTRA-WIDE ADJUSTMENTS (1440px and up)
+   ============================================================ */
+@media (min-width: 1440px) {
+  section {
+    padding: 12rem 15%;
+  }
+  
+  .hero h1 {
+    font-size: 8.5rem;
+  }
+}
+/* ============================================================
+   BIG SCREEN & ULTRA-WIDE STYLING (1440px+)
+   ============================================================ */
+
+@media (min-width: 1440px) {
+  /* 1. Global Wrapper - Prevent infinite stretching */
+  section > div, 
+  nav > div {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  section {
+    padding: 12rem 5%; /* Increased vertical breathing room */
+  }
+
+  /* 2. Massive Typography */
+  .hero h1 {
+    font-size: 10rem; /* Huge impact */
+    letter-spacing: -5px;
+  }
+
+  .section-title {
+    font-size: 5rem;
+    margin-bottom: 8rem;
+    position: relative;
+  }
+
+  /* Decorative line for section titles on big screens */
+  .section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 150px;
+    height: 1px;
+    background: var(--text);
+    opacity: 0.3;
+  }
+
+  /* 3. Expanded Project Grid */
+  .work-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on big screens */
+    gap: 2.5rem;
+  }
+
+  .work-card {
+    height: 450px; /* Taller cards for better aspect ratio */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* 4. Skills Section - Four Column Layout */
+  .skills-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem 2rem;
+  }
+
+  /* 5. Hero Visual Scale */
+  .rotating-circle {
+    width: 500px !important;
+    height: 500px !important;
+  }
+
+  .hero-visual svg {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  /* 6. Navigation refinement */
+  .navbar {
+    padding: 2rem 5%;
+  }
+
+  .nav-links {
+    gap: 4rem; /* Spread out links more */
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+  }
+
+  /* 7. Enhanced Interaction */
+  .work-card:hover {
+    background: var(--white);
+    color: var(--bg);
+    transform: scale(1.03); /* Pop out effect */
+  }
+
+  .work-card:hover p {
+    color: var(--bg);
+    opacity: 0.8;
+  }
+
+  /* 8. Contact Form - Wide Grid */
+  .contact-form {
+    grid-template-columns: repeat(3, 1fr); /* 3 column layout */
+    max-width: 1200px;
+  }
+
+  .contact-textarea {
+    grid-column: span 3;
+  }
+
+  .contact-submit {
+    grid-column: span 1;
+    grid-column-start: 3; /* Push button to the right */
+  }
+}
+
+/* ============================================================
+   ULTRA-WIDE & 4K OPTIMIZATIONS (2000px+)
+   ============================================================ */
+@media (min-width: 2000px) {
+  :root {
+    /* Scale up base spacing variables */
+    --big-spacing: 15rem;
+  }
+
+  section {
+    padding: var(--big-spacing) 0;
+  }
+
+  .hero h1 {
+    font-size: 14rem;
+  }
+
+  /* Add a large background grid for a technical/architectural look */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 100px 100px;
+    z-index: -20;
+    opacity: 0.03;
+    pointer-events: none;
+  }
+}
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.03; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.06; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0.03; }
+}
+
+.pulse-effect {
+  animation: pulse 4s ease-in-out infinite;
+}
+    .autoShow{
+      animation: text-appear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 100vh;
+    }
+
+    @keyframes text-appear {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+     .bg-waves {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+     .imageReveal {
+      animation: imageReveal both;
+      animation-timeline: view(10% 5%);
+    }
+    @keyframes imageReveal {
+      from {
+        filter: saturate(0) contrast(4) brightness(.1) blur(5px);
+        opacity: 0;
+        scale: .95;
+        translate: 0 4rem;
+      }
+      to {
+        filter: none;
+        opacity: 1;
+        scale: 1;
+        translate: 0 0;
+      }
+    }
+      .fadeUp {
+      animation: fadeUp both;
+      animation-timeline: view();
+      cursor: pointer;
+    }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+        scale: 0.5;
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        scale: 1;
+      }
+    }
+ .visual-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wireframe-sphere {
+      width: 300px;
+      height: 300px;
+      background: url(./assets/nathan.jpg) center/contain no-repeat;
+      opacity: 0.1;
+      border: 1px solid white;
+      border-radius: 50%;
+      animation: AutoRotateAnimation 40s;
+      animation-timeline: view(40s);
+    }
