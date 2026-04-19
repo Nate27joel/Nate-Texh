@@ -5,13 +5,20 @@ import {
   MessageSquare, X, ChevronRight, Atom, Code2, 
   Server, Zap, Wind, Database, Activity, Layers, Menu, 
   Container, Cloud, Smartphone, Sun, Moon, 
-  CheckCheck
+  CheckCheck,
+  Facebook,
+  Instagram,
+  CircleCheckBigIcon,
+  Skull,
+  Code,
+  Laptop2Icon,
+  LaptopMinimalCheck,
 } from 'lucide-react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import './App.css';
 
 const BackgroundWaves = () => (
-   <svg class="bg-waves" viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg">
+   <svg className="bg-waves" viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg">
     <path fill="none" stroke="white" stroke-width="0.5" d="M0,400 Q360,100 720,400 T1440,400" opacity="0.2">
       <animate attributeName="d" dur="10s" repeatCount="indefinite" values="M0,400 Q360,100 720,400 T1440,400; M0,400 Q360,700 720,400 T1440,400; M0,400 Q360,100 720,400 T1440,400" />
     </path> 
@@ -62,7 +69,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 };
 
 const Hero = () => {
-  const roles = ['WEB DEVELOPER', 'UI ENGINEER', 'SYSTEM ARCHITECT', 'AI SPECIALIST'];
+  const roles = ['WEB DEVELOPER', 'UI ENGINEER', 'SYSTEM ARCHITECT', 'AI SPECIALIST', 'DEBUGGER'];
   const [roleIndex, setRoleIndex] = useState(0);
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -88,7 +95,7 @@ const Hero = () => {
     <section className="hero">
       <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} style={{ flex: 1 }}>
         <div className="hero-tag">Engineering Portfolio 2025/2026</div>
-        <h1>Nathan <br /> <span className="text-stroke">Company</span></h1>
+        <h1>Nathan <br /> <span className="text-stroke">Texh</span></h1>
         <div className="typing-container">
           {text}<span className="cursor"></span>
         </div>
@@ -106,6 +113,36 @@ const Hero = () => {
   );
 };
 
+const About = () => {
+  return (
+    <section id="about">
+      <div className="about-container autoShow">
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', fontFamily: '-apple-system' }}>
+          <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem' }}>Behind the Code</h2>
+          <p style={{ fontSize: '1.2rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+            I am Nathan, a systems architect and full-stack developer dedicated to crafting digital experiences that are as robust as they are beautiful.
+          </p>
+          <p style={{ color: 'var(--muted)', lineHeight: 1.8 }}>
+            With a background in computer engineering and a passion for AI integration, I build scalable infrastructures and high-performance user interfaces. My mission is to translate complex technical requirements into seamless, efficient solutions that push the boundaries of what's possible on the web.
+          </p>
+        </div>
+        <motion.div 
+          whileHover={{ scale: 1.02 }}
+          className="about-image-wrapper imageReveal"
+        >
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5', background: 'var(--card-bg)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+             <LaptopMinimalCheck size={160} className="pulse-effect" style={{ opacity: 0.1 }} />
+             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem' }}>
+                <div style={{ fontSize: '0.7rem', letterSpacing: '2px', opacity: 0.5, marginBottom: '0.5rem' }}>CURRENTLY BASED IN</div>
+                <div style={{ fontSize: '1.2rem', fontFamily: 'var(--font-serif)' }}>GLOBAL / REMOTE</div>
+             </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 const Work = () => {
   const projects = [
     { id: '01', title: 'Neural Engine', desc: 'Enterprise data integration with custom LLM architecture.' },
@@ -114,11 +151,12 @@ const Work = () => {
     { id: '04', title: 'Fintech App', desc: 'Secure, low-latency currency exchange microservices.' },
     { id: '05', title: 'E-Comm UI', desc: 'Award-winning minimalist shopping experience.' },
     { id: '06', title: 'Cloud Core', desc: 'Automated CI/CD infrastructure for scalable nodes.' },
+    { id: '07', title: 'Weather App', desc: 'Automated for the real-time check on weather' }
   ];
 
   return (
     <section id="work">
-      <h2 className="section-title">Latest Work </h2>
+      <h2 className="section-title">Latest Work <CircleCheckBigIcon /> </h2>
       <div className="work-grid autoShow">
         {projects.map((p) => (
           <motion.div key={p.id} whileHover={{ y: -10 }} className="work-card imageReveal">
@@ -163,59 +201,6 @@ const Skills = () => {
   );
 };
 
-const AIChat = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([{ role: 'ai', text: "Hello. I am Nathan's digital twin. How can I assist you?" }]);
-  const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
-  const scrollRef = useRef(null);
-
-  useEffect(() => { if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight; }, [messages]);
-
-  const handleSend = async () => {
-    if (!input.trim() || loading) return;
-    const userText = input;
-    setInput('');
-    setMessages(prev => [...prev, { role: 'user', text: userText }]);
-    setLoading(true);
-
-    try {
-      const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      const result = await model.generateContent(`AI rep for dev Nathan. Concisely answer: ${userText}`);
-      setMessages(prev => [...prev, { role: 'ai', text: result.response.text() }]);
-    } catch (e) {
-      setMessages(prev => [...prev, { role: 'ai', text: "Link offline. Try again." }]);
-    } finally { setLoading(false); }
-  };
-
-  return (
-    <>
-      <button onClick={() => setIsOpen(true)} className="chat-trigger"><MessageSquare /></button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }} className="chat-window">
-            <div className="chat-header">
-              <span style={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: '1px' }}>NATHAN.AI</span>
-              <button onClick={() => setIsOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text)' }}><X size={16} /></button>
-            </div>
-            <div ref={scrollRef} className="chat-messages scrollbar-hide">
-              {messages.map((m, i) => (
-                <div key={i} className={`message ${m.role === 'user' ? 'msg-user' : 'msg-ai'}`}>{m.text}</div>
-              ))}
-            </div>
-            <div style={{ padding: '1rem', borderTop: '1px solid var(--border)', display: 'flex', gap: '0.5rem' }}>
-              <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSend()} 
-                placeholder="Ask something..." style={{ flex: 1, background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', padding: '0.5rem', color: 'var(--text)', outline: 'none' }} />
-              <button onClick={handleSend} className="btn" style={{ padding: '0.5rem' }}><Send size={16} /></button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
-};
-
 export default function App() {
   const [theme, setTheme] = useState('dark');
 
@@ -237,6 +222,7 @@ export default function App() {
       <BackgroundWaves />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Hero />
+      <About />
       <Work />
       <Skills />
       <section id="contact" style={{ textAlign: 'center' }}>
@@ -250,13 +236,13 @@ export default function App() {
         </form>
       </section>
       <footer style={{ padding: '3rem 10%', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', opacity: 0.4, fontSize: '0.6rem', letterSpacing: '1px' }}>
-        <span>© 2026 Nathan Company</span>
-        <div style={{ display: 'flex', gap: '1.5rem' }}>
-          <Github size={14} />
-          <Linkedin size={14} />
+        <span>© 2026 Nate-Texh Company</span>
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <Github size={20} />
+          <Facebook size={20}/>
+          <Instagram size={20}/>
         </div>
       </footer>
-      <AIChat />
     </main>
   );
 }

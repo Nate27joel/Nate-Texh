@@ -128,16 +128,15 @@ section {
 }
 
 .typing-container {
-  font-family: var(--font-mono);
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 1.25rem;
   color: var(--muted);
   letter-spacing: 2px;
-  height: 2rem;
+  height: 1rem;
 }
 
 .cursor {
   display: inline-block;
-  background: var(--text);
   width: 10px;
   height: 1.5rem;
   margin-left: 5px;
@@ -198,6 +197,18 @@ section {
   font-size: 2.5rem;
   opacity: 0.1;
   margin-bottom: 1rem;
+}
+
+/* --- About --- */
+.about-container {
+  display: grid;
+  gap: 4rem;
+}
+
+.about-image-wrapper {
+  position: relative;
+  border: 1px solid var(--border);
+  padding: 1rem;
 }
 
 /* --- Skills --- */
@@ -332,12 +343,6 @@ section {
     grid-template-columns: 1fr 1fr;
     gap: 6rem;
     align-items: center;
-  }
-
-  .about-image-wrapper {
-    position: relative;
-    border: 1px solid var(--border);
-    padding: 1rem;
   }
 
   /* 4. Desktop Navigation */
@@ -646,7 +651,7 @@ section {
       width: 300px;
       height: 300px;
       background: url(./assets/nathan.jpg) center/contain no-repeat;
-      opacity: 0.1;
+      opacity: 100;
       border: 1px solid white;
       border-radius: 50%;
       animation: AutoRotateAnimation 40s;
