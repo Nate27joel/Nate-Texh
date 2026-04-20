@@ -18,6 +18,35 @@ import {
   UserCheck2,
   XLineTop,
   LineChart,
+  Check,
+  Thermometer,
+  TrashIcon,
+  EarIcon,
+  LaptopMinimalIcon,
+  LandPlotIcon,
+  BedDouble,
+  LucideCheckCheck,
+  CheckCircle2,
+  CheckCircle,
+  PenBox,
+  Pen,
+  Bike,
+  Contact,
+  Contact2,
+  Phone,
+  Projector,
+  LucideProjector,
+  Workflow,
+  WorkflowIcon,
+  Quote,
+  View,
+  HelpCircle,
+  Globe2,
+  GlobeLock,
+  GamepadDirectional,
+  SearchX,
+  SendHorizonal,
+  Code2Icon,
 } from 'lucide-react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import './App.css';
@@ -43,7 +72,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   return (
     <>
       <nav className="navbar">
-        <div className="nav-logo">Nat3</div>
+        <div className="nav-logo">Nat3<CheckCircle size={10}/></div>
         <div className="nav-links">
           {navLinks.map((link) => (
             <a key={link.name} href={link.href}>{link.name}</a>
@@ -102,11 +131,11 @@ const Hero = () => {
         <div className="hero-tag">Engineering Portfolio 2025/2026</div>
         <h1>Nathan <br /> <span className="text-stroke">Texh</span></h1>
         <div className="typing-container">
-          {text}<span className="cursor"></span>
+          {text}<span className="cursor"><Bike color='white'/></span>
         </div>
         <div className="btn-group">
           <a href="#work" className="btn btn-primary">View Projects</a>
-          <a href="#contact" className="btn btn-secondary">Contact</a>
+          <a href="#contact" className="btn btn-secondary"><Phone size={15}/> Contact</a>
         </div>
       </motion.div>
       <div style={{ flex: 1, display: 'flex', justifyContent: 'center', position: 'relative' }}>
@@ -123,7 +152,7 @@ const About = () => {
     <section id="about">
       <div className="about-container autoShow">
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', fontFamily: '-apple-system' }}>
-          <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem' }}>Behind the Code</h2>
+          <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem' }}>Behind the Code <Code2Icon size={40}/></h2>
           <p style={{ fontSize: '1.2rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
             I am Nathan, a systems architect and full-stack developer dedicated to crafting digital experiences that are as robust as they are beautiful.
           </p>
@@ -139,7 +168,7 @@ const About = () => {
              <UserCheck2 size={160} className="pulse-effect" style={{ opacity: 0.1 }} />
              <div style={{ position: 'absolute', bottom: '2rem', left: '2rem' }}>
                 <div style={{ fontSize: '0.7rem', letterSpacing: '2px', opacity: 0.5, marginBottom: '0.5rem' }}>CURRENTLY BASED IN</div>
-                <div style={{ fontSize: '1.2rem', fontFamily: 'var(--font-serif)' }}>GLOBAL / REMOTE</div>
+                <div style={{ fontSize: '1.2rem', fontFamily: 'var(--font-serif)' }}>GLOBAL / REMOTE<GlobeLock size={20}/></div>
              </div>
           </div>
         </motion.div>
@@ -170,7 +199,7 @@ const Work = () => {
             <div className="work-id">{p.id}</div>
             <h3 style={{ textTransform: 'uppercase', letterSpacing: '2px' }}>{p.title}</h3>
             <p style={{ color: 'var(--muted)', fontSize: '0.9rem', lineHeight: 1.6 }}>{p.desc}</p>
-            <ChevronRight style={{ position: 'absolute', bottom: '2.5rem', right: '2.5rem' }} />
+           
           </motion.a>
         ))}
       </div>
@@ -239,7 +268,7 @@ export default function App() {
           <input name="name" placeholder="Full Name" required style={{ padding: '1.25rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text)' }} />
           <input name="email" type="email" placeholder="Email" required style={{ padding: '1.25rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text)' }} />
           <textarea name="message" placeholder="Message" style={{ padding: '1.25rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text)', minHeight: '150px' }} />
-          <button type="submit" className="btn btn-primary" style={{ padding: '1.25rem' }}>Send Transmission</button>
+          <button type="submit" className="btn btn-primary" style={{ padding: '1.25rem' }}>Send Transmission<SendHorizonal style={{height: '10px'}} size={20}/></button>
         </form>
       </section>
       <footer style={{ padding: '2rem 10%', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', opacity: 0.4, fontSize: '0.6rem', letterSpacing: '1px' }}>
