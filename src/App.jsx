@@ -8,11 +8,16 @@ import {
   CheckCheck,
   Facebook,
   Instagram,
-  CircleCheckBigIcon,
+  CircleCheckBigIcon, MessageCircle,
   Skull,
   Code,
   Laptop2Icon,
   LaptopMinimalCheck,
+  UserPlus2Icon,
+  User,
+  UserCheck2,
+  XLineTop,
+  LineChart,
 } from 'lucide-react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import './App.css';
@@ -131,7 +136,7 @@ const About = () => {
           className="about-image-wrapper imageReveal"
         >
           <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5', background: 'var(--card-bg)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-             <LaptopMinimalCheck size={160} className="pulse-effect" style={{ opacity: 0.1 }} />
+             <UserCheck2 size={160} className="pulse-effect" style={{ opacity: 0.1 }} />
              <div style={{ position: 'absolute', bottom: '2rem', left: '2rem' }}>
                 <div style={{ fontSize: '0.7rem', letterSpacing: '2px', opacity: 0.5, marginBottom: '0.5rem' }}>CURRENTLY BASED IN</div>
                 <div style={{ fontSize: '1.2rem', fontFamily: 'var(--font-serif)' }}>GLOBAL / REMOTE</div>
@@ -145,13 +150,15 @@ const About = () => {
 
 const Work = () => {
   const projects = [
-    { id: '01', title: 'Neural Engine', desc: 'Enterprise data integration with custom LLM architecture.' },
-    { id: '02', title: 'SaaS Platform', desc: 'High-performance dashboard for real-time logistics tracking.' },
-    { id: '03', title: 'Cyber Shield', desc: 'Threat detection system utilizing behavioral analysis.' },
-    { id: '04', title: 'Fintech App', desc: 'Secure, low-latency currency exchange microservices.' },
-    { id: '05', title: 'E-Comm UI', desc: 'Award-winning minimalist shopping experience.' },
-    { id: '06', title: 'Cloud Core', desc: 'Automated CI/CD infrastructure for scalable nodes.' },
-    { id: '07', title: 'Weather App', desc: 'Automated for the real-time check on weather' }
+    { id: '01', title: 'Neural Engine', desc: 'Enterprise data integration with custom LLM architecture.', link: '#' },
+    { id: '02', title: 'SaaS Platform', desc: 'High-performance dashboard for real-time logistics tracking.', link: '#' },
+    { id: '03', title: 'Cyber Shield', desc: 'Threat detection system utilizing behavioral analysis.', link: '#' },
+    { id: '04', title: 'Fintech App', desc: 'Secure, low-latency currency exchange microservices.', link: '#' },
+    { id: '05', title: 'E-Comm UI', desc: 'Award-winning minimalist shopping experience.', link: '#' },
+    { id: '06', title: 'Cloud Core', desc: 'Automated CI/CD infrastructure for scalable nodes.', link: '#' },
+    { id: '07', title: 'Weather App', desc: 'Hyper-local forecasting engine with real-time satellite data visualization.', link: '#' },
+    { id: '08', title: 'Crypto Pulse', desc: 'DeFi dashboard featuring real-time token analytics and whale movement tracking.', link: '#' },
+    { id: '09', title: 'Health Sync', desc: 'HIPAA-compliant patient portal with end-to-end encrypted record management.', link: '#' }
   ];
 
   return (
@@ -159,12 +166,12 @@ const Work = () => {
       <h2 className="section-title">Latest Work <CircleCheckBigIcon /> </h2>
       <div className="work-grid autoShow">
         {projects.map((p) => (
-          <motion.div key={p.id} whileHover={{ y: -10 }} className="work-card imageReveal">
+          <motion.a href={p.link} target="_blank" rel="noopener noreferrer" key={p.id} whileHover={{ y: -10 }} className="work-card imageReveal" style={{ textDecoration: 'none', color: 'inherit', display: 'block', position: 'relative' }}>
             <div className="work-id">{p.id}</div>
             <h3 style={{ textTransform: 'uppercase', letterSpacing: '2px' }}>{p.title}</h3>
             <p style={{ color: 'var(--muted)', fontSize: '0.9rem', lineHeight: 1.6 }}>{p.desc}</p>
             <ChevronRight style={{ position: 'absolute', bottom: '2.5rem', right: '2.5rem' }} />
-          </motion.div>
+          </motion.a>
         ))}
       </div>
     </section>
@@ -178,7 +185,7 @@ const Skills = () => {
     { name: 'Node.js/Go', level: 85 },
     { name: 'System Architecture', level: 88 },
     { name: 'PostgreSQL/Redis', level: 82 },
-    { name: 'Cloud Native (AWS)', level: 80 },
+    { name: 'Html/Css', level: 98 },
   ];
 
   return (
@@ -228,19 +235,18 @@ export default function App() {
       <section id="contact" style={{ textAlign: 'center' }}>
         <h2 className="section-title">Get in Touch</h2>
         <p style={{ color: 'var(--muted)', letterSpacing: '2px', marginBottom: '3rem' }}>NATEAZIKE27@GMAIL.COM</p>
-        <form action="https://formspree.io/f/mqakpzoz" method="POST" style={{ maxWidth: '600px', margin: '0 auto', display: 'grid', gap: '1rem' }}>
+        <form action="https://formspree.io/f/xojyloev" method="POST" style={{ maxWidth: '600px', margin: '0 auto', display: 'grid', gap: '1rem' }}>
           <input name="name" placeholder="Full Name" required style={{ padding: '1.25rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text)' }} />
           <input name="email" type="email" placeholder="Email" required style={{ padding: '1.25rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text)' }} />
           <textarea name="message" placeholder="Message" style={{ padding: '1.25rem', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text)', minHeight: '150px' }} />
           <button type="submit" className="btn btn-primary" style={{ padding: '1.25rem' }}>Send Transmission</button>
         </form>
       </section>
-      <footer style={{ padding: '3rem 10%', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', opacity: 0.4, fontSize: '0.6rem', letterSpacing: '1px' }}>
+      <footer style={{ padding: '2rem 10%', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', opacity: 0.4, fontSize: '0.6rem', letterSpacing: '1px' }}>
         <span>© 2026 Nate-Texh Company</span>
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <Github size={20} />
-          <Facebook size={20}/>
-          <Instagram size={20}/>
+          <a href="https://github.com/Nate27joel" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}><Github size={25} /></a>
+         <a href="https://wa.me/+2349164848149" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}><MessageCircle size={25}/></a>
         </div>
       </footer>
     </main>
