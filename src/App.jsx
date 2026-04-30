@@ -65,6 +65,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Work', href: '#work' },
+    { name: 'Testimonials', href: '#testimonials' },
     { name: 'Skills', href: '#skills' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -139,9 +140,9 @@ const Hero = () => {
         </div>
       </motion.div>
       <div style={{ flex: 1, display: 'flex', justifyContent: 'center', position: 'relative' }}>
-        <div class="visual-container">
-      <div class="wireframe-sphere"></div>
-    </div>
+        <div className="visual-container">
+          <div className="wireframe-sphere"></div>
+        </div>
       </div>
     </section>
   );
@@ -237,6 +238,44 @@ const Skills = () => {
   );
 };
 
+const Testimonials = () => {
+  const testimonials = [
+    {
+      quote: 'Nathan delivered an elegant and highly scalable platform ahead of schedule. His attention to detail is unmatched.',
+      name: 'Maya R.',
+      role: 'Product Lead, Nova Labs',
+    },
+    {
+      quote: 'His UI work transformed our app into a polished experience while keeping performance at the forefront.',
+      name: 'Daniel K.',
+      role: 'CTO, FluxWorks',
+    },
+    {
+      quote: 'A dependable problem solver who brings clarity to complex engineering challenges and keeps communication crisp.',
+      name: 'Simone T.',
+      role: 'VP of Engineering, ArcShift',
+    },
+  ];
+
+  return (
+    <section id="testimonials">
+      <h2 className="section-title">Testimonials</h2>
+      <div className="testimonial-grid">
+        {testimonials.map((item) => (
+          <motion.div key={item.name} whileHover={{ y: -8 }} className="testimonial-card">
+            <Quote size={32} className="testimonial-icon" />
+            <p>{item.quote}</p>
+            <div className="testimonial-meta">
+              <strong className="testimonial-name">{item.name}</strong>
+              <span className="testimonial-role">{item.role}</span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
 export default function App() {
   const [theme, setTheme] = useState('dark');
 
@@ -260,6 +299,7 @@ export default function App() {
       <Hero />
       <About />
       <Work />
+      <Testimonials />
       <Skills />
       <section id="contact" style={{ textAlign: 'center' }}>
         <h2 className="section-title">Get in Touch</h2>
